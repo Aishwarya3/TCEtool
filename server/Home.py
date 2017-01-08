@@ -1,5 +1,5 @@
 
-# to run type in browser: http://localhost:8000/Movies.py
+# to run type in browser: http://localhost:8000/Home.py
 
 
 # Import the necessary package to process data in JSON format
@@ -13,12 +13,14 @@ from twitter import Twitter, OAuth, TwitterHTTPError
 
 # Import modules for CGI handling 
 import cgi, cgitb 
-
+import time
 # Create instance of FieldStorage 
 form = cgi.FieldStorage() 
 
 # Get data from fields
 bb = form.getvalue('bb')
+t = form.getvalue('t')
+search = form.getvalue('search')
 
 # Variables that contains the user credentials to access Twitter API 
 ACCESS_TOKEN = '778543465860915200-2e6vYoCTyhmqQdBcRV5r1LQvK8SLpez'
@@ -64,10 +66,12 @@ print """<!DOCTYPE html>
             li {
                 float: top;
                 border-bottom:1px solid #bbb;
+                
             }
 
-            li:last-child {
-                border-right: none;
+            li:first-child {
+                //border-right: none;
+                border-top:1px solid #bbb;
             }
 
             li a {
@@ -151,50 +155,117 @@ print """<!DOCTYPE html>
                 //font-family: serif;
                 }
 				
-			.button {
-				background-color: #4CAF50; /* Green */
-				border: 1px solid green;
-				color: white;
-				padding: 5px 14px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				cursor: pointer;
-				float: left;
-			}
+            .button {
+                    background-color: #4CAF50; /* Green */
+                    border: 1px solid green;
+                    color: white;
+                    padding: 5px 14px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    cursor: pointer;
+                    float: left;
+            }
 
-			.button:hover {
-				background-color: #3e8e41;
-			}
+            .button:hover {
+                    background-color: #3e8e41;
+            }
+
+            div.polaroid {
+              //width: 250px;
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              //text-align: center;
+              //border: 2px solid #191970;
+              background-color: white;
+              position:relative; left:23%;
+              font-family:Arial;
+              width:54%; 
+            }
+
+            div.container {
+              padding: 10px;
+            }
+
+            .dropbtn {
+                background-color: black;
+                color: white;
+                //padding: 16px;
+                //padding: 50px 50px 50px 50px;
+                padding-left: 80px;
+                padding-right:80px;
+                
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+                width:100%
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: black;
+                overflow:auto;
+                width:100%;
+                //min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            /*.dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content a:hover {background-color: #f1f1f1}
+            */
+
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #3e8e41;
+            }
                 
         </style>
 
     </head>
-    <body style="background-image: url('bg_vertical.jpg');">
+    <body style="background-image: url('http://www.pixelstalk.net/wp-content/uploads/2016/06/Light-Blue-Backgrounds-Free-Downlaod.jpg');">
 
-        <h1>Welcome!</h1>
+        <br><br>
 
         <form action="Home.py">
 
             <div class="class1" align="center">
 
                 <div class="class2" align="left" >
-                    <table >
+
+                     <table >
                         <tr>
-                            <td>
-                                <img class="imgclass" src="bg_vertical.jpg" alt="Photo: <%=un%>"/>
-                            </td>
-                            <td colspan="4">
+                            <td colspan="4" style="padding-left:20px;">
                                 <p class="unclass">Entertainment</p>
                             </td>
                             <td style="align:left; float:left">
-                            <p class="unclass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search:&nbsp;&nbsp;<input type="text" name="t" value="search" style="color:grey;font-family:Lucida Bright; font-size:15px; height:30px; margin-left: 0px; box-shadow: 3px 3px;
-                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></p>
+                            <p class="unclass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <!--<input type="text" name="t" value="search" style="color:grey;font-family:Lucida Bright; font-size:15px; height:30px; margin-left:0px;
+                            box-shadow: 3px 3px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">&nbsp;
+                            <input type="submit" name="search" value="Search">-->
+                            <a href="Search1.py" style="color:white">Search</a>
+                            
+                            </p>
                             </td>
                         </tr>
                     </table>
-                     
                 </div>
 				
 					
@@ -208,71 +279,102 @@ print """<!DOCTYPE html>
 				
 				<tr>
 				
-					<td style="background-color:black; align:left; width:20%; height:100%">
-					
+					<td style="background-color:black; align:left; width:20%; height:100%; vertical-align:top;">
+
+                                            <table>
+                                            <tr>
 						<ul style="font-size:x-large;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-							<li><a class="active" href="Home.py">Home</a></li>
-							<li><a href="Movies.py">Movies</a></li> 
+						        <li><a class="active" href="Home.py">Home</a></li>
+							<li><a href="Movies.py">Movies</a></li>                  
 							<li><a href="Twitterati.py">Twitterati</a></li>
-							<li><a href="Tvsoaps.py">Television Soap Opera</a></li>
+							<li><a href="television.py">Television Soap Opera</a></li>
 							<li><a href="Books.py">Books</a></li>
 							<li><a href="Theatre.py">Theatre</a></li>
 							<!--<li style="float:right"><input class="cl" type="submit" value="Log Out" name="bl"></li>-->
 						</ul>
+                                            </tr>
+                                            <tr style="height:50%">
+
+<!--<div style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+<h2 style="color:White; text-align:center;">Calender:</h2>
+
+
+<div class="dropdown">
+  <button class="dropbtn"><h2>Calender&nbsp;&#8681;</h2></button>
+  <div class="dropdown-content">
+
+
+<p style="color:White">
+From date: <br>
+Year: -->"""
+
+
+
+
+print """   </div>
+                    </div>
+				</tr>
+				</table>
 					
 					</td>
 					
 					
-					<td  style="background-color: #DCDCDC; height:550px;">
-
-                                            <table>
+					<td  style="background-color: #DCDCDC; height:550px; width:65%;">
+                                           <img src="http://www.sethlevine.com/wp-content/uploads/welcome.jpg" width="99%" height="140%" border="5"  alt="Photo: <%=un%>"/>
+                                           <!-- <table>
 
                                             <tr>
-                                            <td>
-						<div style="width:100%; height: 500px; overflow: scroll;">
-						<br><br><br>"""
+                                            <td style="">
+                                                <div style="width:100%; height: 500px; overflow:scroll; ">
+						<br><br><br> -->
+
+                                                
+						"""
 
 
-#movie%20trailers%20OR%20actors%20trailors
-#s="movie "+bb+" OR actors "+bb
-#s="movie%20trailer%20OR%20actor%20trailer"
-s="entertainment"
-iterator = twitter.search.tweets(q=s, lang='en')
-tweets = iterator["statuses"]
-tweet_count = 10000
-
-for tweet in tweets:
-														   
-	if 'text' in tweet:
-											 
-		print """<div style='border-radius: 10px; border: 2px solid #191970;
-		padding: 3px; background-color: white; position:relative; left:10%;
-		width:80%; '><p> """
-											
-		tweet_count -= 1
-		if tweet['user']['name']:
-			print "User: ",tweet['user']['name'].encode('utf-8')
-		if tweet['user']['screen_name']:
-			print " &nbsp;&nbsp;&nbsp;  Screen name:  ",tweet['user']['screen_name'].encode('utf-8')
-		print "<hr> Tweet:    ", tweet["text"].encode('utf-8')
-		print "<br><small>"
-		print " <hr> Created at:", tweet["created_at"].encode('utf-8')
-		if tweet["favorite_count"]:
-			print "  &nbsp;&nbsp;&nbsp;&nbsp;     Likes:", tweet["favorite_count"]
-		if tweet["retweet_count"]:
-			print "  &nbsp;&nbsp;&nbsp;&nbsp;     Re-tweets:", tweet["retweet_count"]
-		print "</small></p></div><br>"
-		if tweet_count <= 0:
-			print "<br><br><br>", tweet_count
-			break
-
-
-print """		</td>	</tr> 	</table>		</div>
+print """
+              <!--  </td>	</tr> 	</table> -->		</div>
 
 						<br />
 						<br />
 
 					</td>
+                                        
+					<td style="background-color: black; color:white; text-align:center; vertical-align:top;">
+					<table border="2">
+                                        <tr>
+					<img src="http://plusquotes.com/images/quotes-img/Happy_birthday.jpg" height="150" width="225" alt="Birthdays:">
+                                        </img>
+                                        </tr>
+                                        <tr>
+                                        
+
+"""
+print "<h3>Date: "+(time.strftime("%d/%m"))+"</h3>"
+
+fo = open("Birthdaysorted.txt", "r")
+list = fo.read()
+newlist = list.split("\n")
+fo.close()
+
+date=time.strftime("%d")
+month=time.strftime("%m")
+ndate=int(date)
+nmonth=int(month)
+
+for l in newlist:
+    #print l
+    bd = l.split()
+    #print bd
+    lmonth = int(bd[4])
+    ldate = int(bd[3])
+    if nmonth < lmonth:
+        break
+    if nmonth==lmonth:
+        if ndate==ldate:
+            print "<h3>"+bd[0] + " " + bd[1]+"</h3>"
+
+print """</div></tr></table></td>
 				</tr>		
 				</div>
 				</table>

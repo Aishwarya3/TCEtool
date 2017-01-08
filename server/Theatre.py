@@ -1,5 +1,5 @@
 
-# to run type in browser: http://localhost:8000/Movies.py
+# to run type in browser: http://localhost:8000/Theatre.py
 
 
 # Import the necessary package to process data in JSON format
@@ -13,12 +13,14 @@ from twitter import Twitter, OAuth, TwitterHTTPError
 
 # Import modules for CGI handling 
 import cgi, cgitb 
-
+import time
 # Create instance of FieldStorage 
 form = cgi.FieldStorage() 
 
 # Get data from fields
 bb = form.getvalue('bb')
+t = form.getvalue('t')
+search = form.getvalue('search')
 
 # Variables that contains the user credentials to access Twitter API 
 ACCESS_TOKEN = '778543465860915200-2e6vYoCTyhmqQdBcRV5r1LQvK8SLpez'
@@ -64,10 +66,12 @@ print """<!DOCTYPE html>
             li {
                 float: top;
                 border-bottom:1px solid #bbb;
+                
             }
 
-            li:last-child {
-                border-right: none;
+            li:first-child {
+                //border-right: none;
+                border-top:1px solid #bbb;
             }
 
             li a {
@@ -151,46 +155,113 @@ print """<!DOCTYPE html>
                 //font-family: serif;
                 }
 				
-			.button {
-				background-color: #4CAF50; /* Green */
-				border: 1px solid green;
-				color: white;
-				padding: 5px 14px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				cursor: pointer;
-				float: left;
-			}
+            .button {
+                    background-color: #4CAF50; /* Green */
+                    border: 1px solid green;
+                    color: white;
+                    padding: 5px 14px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    cursor: pointer;
+                    float: left;
+            }
 
-			.button:hover {
-				background-color: #3e8e41;
-			}
+            .button:hover {
+                    background-color: #3e8e41;
+            }
+
+            div.polaroid {
+              //width: 250px;
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              //text-align: center;
+              //border: 2px solid #191970;
+              background-color: white;
+              position:relative; left:23%;
+              font-family:Arial;
+              width:54%; 
+            }
+
+            div.container {
+              padding: 10px;
+            }
+
+            .dropbtn {
+                background-color: black;
+                color: white;
+                //padding: 16px;
+                //padding: 50px 50px 50px 50px;
+                padding-left: 80px;
+                padding-right:80px;
+                
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+                width:100%
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: black;
+                overflow:auto;
+                width:100%;
+                //min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            /*.dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content a:hover {background-color: #f1f1f1}
+            */
+
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #3e8e41;
+            }
                 
         </style>
 
     </head>
-    <body style="background-image: url('bg_vertical.jpg');">
+    <body style="background-image: url('http://www.pixelstalk.net/wp-content/uploads/2016/06/Light-Blue-Backgrounds-Free-Downlaod.jpg');">
 
-        <h1>Welcome!</h1>
+        <br><br>
 
         <form action="Theatre.py">
 
             <div class="class1" align="center">
 
                 <div class="class2" align="left" >
-                    <table >
+                     <table >
                         <tr>
-                            <td>
-                                <img class="imgclass" src="bg_vertical.jpg" alt="Photo: <%=un%>"/>
-                            </td>
-                            <td colspan="4">
+                            <td colspan="4" style="padding-left:20px;">
                                 <p class="unclass">Entertainment</p>
                             </td>
                             <td style="align:left; float:left">
-                            <p class="unclass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search:&nbsp;&nbsp;<input type="text" name="t" value="search" style="color:grey;font-family:Lucida Bright; font-size:15px; height:30px; margin-left: 0px; box-shadow: 3px 3px;
-                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></p>
+                            <p class="unclass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <!--<input type="text" name="t" value="search" style="color:grey;font-family:Lucida Bright; font-size:15px; height:30px; margin-left:0px;
+                            box-shadow: 3px 3px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">&nbsp;
+                            <input type="submit" name="search" value="Search">-->
+                            <a href="Search1.py" style="color:white">Search</a>
+                            
+                            </p>
                             </td>
                         </tr>
                     </table>
@@ -208,29 +279,149 @@ print """<!DOCTYPE html>
 				
 				<tr>
 				
-					<td style="background-color:black; align:left; width:20%; height:100%">
-					
+					<td style="background-color:black; align:left; width:20%; height:100%; vertical-align:top;">
+
+                                            <table>
+                                            <tr>
 						<ul style="font-size:x-large;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                                         <li><a href="Home.py">Home</a></li>
 							<li><a href="Movies.py">Movies</a></li>                   
 							<li><a href="Twitterati.py">Twitterati</a></li>
-							<li><a href="Tvsoaps.py">Television Soap Opera</a></li>
+							<li><a href="television.py">Television Soap Opera</a></li>
 							<li><a href="Books.py">Books</a></li>
 							<li><a class="active" href="Theatre.py">Theatre</a></li>
 							<!--<li style="float:right"><input class="cl" type="submit" value="Log Out" name="bl"></li>-->
 						</ul>
+                                            </tr>
+                                            <tr style="height:50%">
+
+<!--<div style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+<h2 style="color:White; text-align:center;">Calender:</h2>-->
+
+
+<div class="dropdown">
+  <button class="dropbtn"><h2>Calender&nbsp;&#8681;</h2></button>
+  <div class="dropdown-content">
+
+
+<p style="color:White">
+From date: <br>
+Year:"""
+
+
+
+sd=form.getvalue('sd')
+if sd:
+    fm=form.getvalue('fmonth')
+    fy=form.getvalue('fyear')
+    fd=form.getvalue('fday')
+    tm=form.getvalue('tmonth')
+    ty=form.getvalue('tyear')
+    td=form.getvalue('tday')
+    
+print "<select name='fyear'>"
+
+
+    
+for num in range(2000,2017):
+    snum=str(num)
+    if sd and snum==fy:
+        print "<option value="+snum+" selected='selected'>"+snum+"</option>"
+    else:
+        print "<option value="+snum+">"+snum+"</option>"
+    
+##print "</select>&nbsp;&nbsp;Month:<select name='fmonth'>"
+##print "<option value='1'>January</option><option value='2'>February</option>February<option value='3'>March</option><option value='4'>April</option>"
+##print "<option value='5'>May</option><option value='6'>June</option><option value='7'>July</option><option value='8'>August</option>"
+##print "<option value='9'>September</option><option value='10'>October</option><option value='11'>November</option><option value='12'>December</option>"
+##print "</select>&nbsp;Day:<select name='fday'>"
+
+print "</select>&nbsp;&nbsp;Month:<select name='fmonth'>"
+Months=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+mi=1
+for m in Months:
+    smi=str(mi)
+    if sd and smi==fm:
+        print "<option value='"+smi+"' selected='selected'>"+m+"</option>"
+        #print smi
+    else:
+        print "<option value='"+smi+"'>"+m+"</option>"
+    mi=mi+1
+print "</select>&nbsp;Day:<select name='fday'>"
+
+for num in range(1,31):
+    snum=str(num)
+    if sd and snum==fd:
+        print "<option value="+snum+" selected='selected'>"+snum+"</option>"
+    else:
+        print "<option value="+snum+">"+snum+"</option>"
+        
+print "</select>"
+
+print """<br><br>To date: <br>
+Year:
+<select name="tyear">"""
+for num in range(2000,2017):
+    snum=str(num)
+    if sd and snum==ty:
+        print "<option value="+snum+" selected='selected'>"+snum+"</option>"
+    else:
+        print "<option value="+snum+">"+snum+"</option>"
+    
+##print "</select>&nbsp;&nbsp;Month:<select name='tmonth'>"
+##print "<option value='1'>January</option><option value='2'>February</option>February<option value='3'>March</option><option value='4'>April</option>"
+##print "<option value='5'>May</option><option value='6'>June</option><option value='7'>July</option><option value='8'>August</option>"
+##print "<option value='9'>September</option><option value='10'>October</option><option value='11'>November</option><option value='12'>December</option>"
+##print "</select>&nbsp;Day:<select name='tday'>"
+
+print "</select>&nbsp;&nbsp;Month:<select name='tmonth'>"
+mi=1
+for m in Months:
+    smi=str(mi)
+    if sd and smi==tm:
+        print "<option value="+smi+" selected='selected'>"+m+"</option>"
+        
+    else:
+        print "<option value="+smi+">"+m+"</option>"
+    mi=mi+1
+        
+print "</select>&nbsp;Day:<select name='tday'>"
+        
+for num in range(1,31):
+    snum=str(num)
+    if sd and snum==td:
+        print "<option value="+snum+" selected='selected'>"+snum+"</option>"
+    else:
+        print "<option value="+snum+">"+snum+"</option>"
+        
+print "</select><br> <br>"
+
+print "<input type='checkbox' name='sd' value='sd'>Search by date</p>"
+
+print """   </div>
+                    </div>
+				</tr>
+				</table>
 					
 					</td>
 					
 					
-					<td  style="background-color: #DCDCDC; height:550px;">
+					<td  style="background-color: #DCDCDC; height:550px; width:65%;">
 
-                                            <table>
+                                            <table style="width:100%;">
 
                                             <tr> <td>
                             
                                                 <div style="width:100%; font-size:smaller; height:100%">
-						
+						<!--<ul style="font-size:x-large;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+							<li><a class="active" href="Home.jsp">Home</a></li>                   
+							<li><a href="Profile.jsp">Profile</a></li>
+							<li><a href="SendReq.jsp">Friend requests</a></li>
+							<li><a href="Friends.jsp">Friends</a></li>
+							<li><a href="FriendProfile.jsp">View Users</a></li>
+							<!--<li style="float:right"><input class="cl" type="submit" value="Log Out" name="bl"></li>
+						</ul>
+						-->
 						<input type="submit" class="button" name="bb" value="Plays" />&nbsp;
 						<input type="submit" class="button" name="bb" value="Adapted from" />&nbsp;
 						<input type="submit" class="button" name="bb" value="History" />&nbsp;
@@ -238,58 +429,197 @@ print """<!DOCTYPE html>
 						<input type="submit" class="button" name="bb" value="Awards" />&nbsp;
 						<input type="submit" class="button" name="bb" value="Actors" />&nbsp;
 						<input type="submit" class="button" name="bb" value="Reviews" />
-						
-                                                </div>
+
+						<br><br>
+                                               </div>
 						
                                             </td>
                                             </tr>
                                             <tr>
-                                            <td>
-						<div style="width:100%; height: 500px; overflow: scroll;">
-						<br><br><br>"""
+                                            <td style="" >
+                                                <div style="width:100%; height: 500px; overflow:scroll; ">
+						<br><br><br>
+
+                                                
+						"""
+
+#<a href="search.py">Search</a>
+#if search and t:
 
 
 if bb:
+
     #movie%20trailers%20OR%20actors%20trailors
     #s="movie "+bb+" OR actors "+bb
     #s="movie%20trailer%20OR%20actor%20trailer"
-    s="theatre%20"+bb
-    iterator = twitter.search.tweets(q=s, lang='en')
+
+    fot=form.getvalue('fot')
+    if fot=="simple":
+        inentities='true'
+    else:
+        inentities='false'
+    
+    cnt=form.getvalue('notw')
+    #print cnt
+    if bb=="Plays":
+        s=" theatre stage plays-filter:retweets"
+    else:
+        s="theatre%20"+bb+"%20OR%20play%20"+bb+"-filter:retweets" 
+    if sd:
+        snc=fy+"-"+fm+"-"+fd
+        print " since ", snc
+        untl=ty+"-"+tm+"-"+td
+        print "  until ", untl
+        iterator = twitter.search.tweets(q=s, lang='en', since=snc, until=untl, result_type='mixed', count=cnt, include_entities=inentities)
+    else:
+        iterator = twitter.search.tweets(q=s, lang='en', result_type='mixed', count=cnt, include_entities=inentities)
+    #s="movie%20"+bb+"%20OR%20actor%20"+bb
+    
     tweets = iterator["statuses"]
-    tweet_count = 10000
+    tweet_count = 100
 
-    for tweet in tweets:
+
+    if fot=="simple":
+
+        for tweet in tweets:
                                                                
-        if 'text' in tweet:
-                                                 
-            print """<div style='border-radius: 10px; border: 2px solid #191970;
-            padding: 3px; background-color: white; position:relative; left:10%;
-            width:80%; '><p> """
-                                                
-            tweet_count -= 1
-            if tweet['user']['name']:
-                print "User: ",tweet['user']['name'].encode('utf-8')
-            if tweet['user']['screen_name']:
-                print " &nbsp;&nbsp;&nbsp;  Screen name:  ",tweet['user']['screen_name'].encode('utf-8')
-            print "<hr> Tweet:    ", tweet["text"].encode('utf-8')
-            print "<br><small>"
-            print " <hr> Created at:", tweet["created_at"].encode('utf-8')
-            if tweet["favorite_count"]:
-                print "  &nbsp;&nbsp;&nbsp;&nbsp;     Likes:", tweet["favorite_count"]
-            if tweet["retweet_count"]:
-                print "  &nbsp;&nbsp;&nbsp;&nbsp;     Re-tweets:", tweet["retweet_count"]
-            print "</small></p></div><br>"
-            if tweet_count <= 0:
-                print "<br><br><br>", tweet_count
-                break
+            if 'text' in tweet:
+                                                     
+                print """<div class="polaroid">"""
+                text = tweet['text']
+                entities = tweet['entities']
+        
+                if 'media' in entities:
+                    for media_element in entities['media']:
+                        if media_element['type'] == 'photo':
+                            text = text.replace(media_element['url'], '')
+                        #if media_element['type'] == 'video':
+                            #text = text.replace(media_element['url'], '')
+
+                if 'urls' in entities:
+                    for url_element in entities['urls']:
+                        if url_element['url']:
+                            us="<a href='"+url_element['url']+"' title='"+url_element['expanded_url']+"'>"+ url_element['display_url']+"</a>"
+                            text = text.replace(url_element['url'], us)
+
+                if 'extended_entities' in tweet:
+                    ee = tweet['extended_entities']
+                    if ee['media']:
+                        media=ee['media'][0]
+                        #print "EE: type:", media['type']
+                        if media['type']=='video':
+                            variants=media['video_info']['variants']
+                            for variant in variants:
+                                if variant['content_type']=='video/mp4':
+                                    print "<br><video  style='width:100%;' controls><source src='"+variant['url']+"' type='video/mp4'>Video cannot be played</video>"
+                                    break;
+                        else:
+                            print "<br><img src='", media['media_url_https']
+                            print "' alt='Image cannot be displayed.' style='width:100%;'/>"
+                    
+                print "<div class='container'> "
+                print "<img src='"+tweet["user"]["profile_image_url_https"]+"' alt='img' style='vertical-align:middle;'>"
+                if tweet['user']['name']:
+                    print "<b>&nbsp;&nbsp;"+tweet['user']['name'].encode('utf-8')+"</b>"
+                if tweet['user']['screen_name']:
+                    print "<font color='gray'>&nbsp;&nbsp;@"+tweet['user']['screen_name'].encode('utf-8')+"</font><br>"
+
+                print "<br>Tweet:    ", text.encode('utf-8')
+
+                print "<br><small><font color='gray'>"
+
+                crt=tweet["created_at"].split();
+                crt1=""+crt[1]+" "+crt[2]+" "+crt[5]
+
+                print " <hr> Created at: "+crt[3]+" - "+crt1
+                
+                if tweet["favorite_count"]:
+                    print "  &nbsp;&nbsp;&nbsp;&nbsp;     Likes:", tweet["favorite_count"]
+                if tweet["retweet_count"]:
+                    print "  &nbsp;&nbsp;&nbsp;&nbsp;     Re-tweets:", tweet["retweet_count"]
+                print "</font></small></p> </div></div><br>"
 
 
-print """		</td>	</tr> 	</table>		</div>
+
+    else:
+
+        for tweet in tweets:
+                                                               
+            if 'text' in tweet:
+
+                resp = twitter.statuses.oembed(_id=tweet['id_str'])
+
+                print "<div class='polaroid'>"+resp['html'].encode('utf-8')+" </div><br>"
+                
+                #tweet_count += 1
+                #print " TWEET COUNT: ", tweet_count
+
+        
+
+
+print """
+                </td>	</tr> 	</table>		</div>
 
 						<br />
 						<br />
 
 					</td>
+                                        
+					<td style="background-color: black; color:white; text-align:center; vertical-align:top;">
+					<table border="2">
+                                        <tr>
+					<img src="http://plusquotes.com/images/quotes-img/Happy_birthday.jpg" height="150" width="200" alt="Birthdays:">
+                                        </img>
+                                        </tr>
+                                        <tr>
+                                        
+
+"""
+print "<h3>Date: "+(time.strftime("%d/%m"))+"</h3>"
+
+fo = open("Birthdaysorted.txt", "r")
+list = fo.read()
+newlist = list.split("\n")
+fo.close()
+
+date=time.strftime("%d")
+month=time.strftime("%m")
+ndate=int(date)
+nmonth=int(month)
+
+for l in newlist:
+    #print l
+    bd = l.split()
+    #print bd
+    lmonth = int(bd[4])
+    ldate = int(bd[3])
+    if nmonth < lmonth:
+        break
+    if nmonth==lmonth:
+        if ndate==ldate:
+            print "<h3>"+bd[0] + " " + bd[1]+"</h3>"
+
+print"""                                </tr>
+                                        <tr style="border: 3px solid black;">
+                                        <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                        <hr><h2><br>Format of <br>Tweets:</h2><br> """
+
+fot = form.getvalue('fot')
+if fot=="simple":
+    print """ <input type="radio" name="fot" value="simple" checked="checked">Simple (Faster) <br>"""
+elif fot:
+    print """ <input type="radio" name="fot" value="simple" >Simple (Faster) <br>"""
+else:
+    print """ <input type="radio" name="fot" value="simple" checked="checked" >Simple (Faster) <br>"""
+
+if fot=="embed":
+    print """ <input type="radio" name="fot" value="embed" checked="checked">Embedded (Slower) """
+else:
+    print """ <input type="radio" name="fot" value="embed">Embedded (Slower) """
+print """
+
+<br>No. of Tweets:&nbsp;<input type="number" name="notw" min="1" max="100" value="25">
+</div></tr></table></td>
 				</tr>		
 				</div>
 				</table>

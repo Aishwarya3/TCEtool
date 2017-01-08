@@ -1,5 +1,5 @@
 
-# to run type in browser: http://localhost:8000/Movies.py
+# to run type in browser: http://localhost:8000/Search1.py
 
 
 # Import the necessary package to process data in JSON format
@@ -172,6 +172,45 @@ print """<!DOCTYPE html>
                     background-color: #3e8e41;
             }
 
+
+
+
+            
+            input[type = "submit"]  {
+                 //background-color: #3e8e41;
+                 background-color: #111;
+                 width: 100%;
+                 height:100%;
+            }
+
+            /*input[type=text], select  { */
+            .inputtype {
+                    width: 100%;
+                    height: 35px;
+                    font-size: 20px;
+                    //padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+            
+            }
+
+            input[type = "number"], select  {
+
+                    width: 30%;
+                    //padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+            
+            }
+
+
+            
             div.polaroid {
               //width: 250px;
               box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -242,12 +281,12 @@ print """<!DOCTYPE html>
 
         <br><br>
 
-        <form action="Books.py">
+        <form action="Search1.py">
 
             <div class="class1" align="center">
 
                 <div class="class2" align="left" >
-                     <table >
+                   <table >
                         <tr>
                             <td colspan="4" style="padding-left:20px;">
                                 <p class="unclass">Entertainment</p>
@@ -288,15 +327,15 @@ print """<!DOCTYPE html>
 							<li><a href="Movies.py">Movies</a></li>                   
 							<li><a href="Twitterati.py">Twitterati</a></li>
 							<li><a href="television.py">Television Soap Opera</a></li>
-							<li><a class="active" href="Books.py">Books</a></li>
+							<li><a href="Books.py">Books</a></li>
 							<li><a href="Theatre.py">Theatre</a></li>
 							<!--<li style="float:right"><input class="cl" type="submit" value="Log Out" name="bl"></li>-->
 						</ul>
                                             </tr>
                                             <tr style="height:50%">
 
-<!--<div style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-<h2 style="color:White; text-align:center;">Calender:</h2>-->
+<div style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+<!--<h2 style="color:White; text-align:center;">Calender:</h2>-->
 
 
 <div class="dropdown">
@@ -399,53 +438,98 @@ print "</select><br> <br>"
 print "<input type='checkbox' name='sd' value='sd'>Search by date</p>"
 
 print """   </div>
-                    </div>
-				</tr>
-				</table>
-					
-					</td>
-					
-					
-					<td  style="background-color: #DCDCDC; height:550px; width:65%;">
+            </div>
+            </tr>
+            </table>
+                    
+            </td>
+                    
+                <td  style="background-color: #DCDCDC; height:550px; width:65%;">
 
-                                            <table style="width:100%">
+                        <table style="width:100%;">
 
-                                            <tr> <td>
-                            
-                                                <div style="width:100%; font-size:smaller; height:100%">
-						<!--<ul style="font-size:x-large;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-							<li><a class="active" href="Home.jsp">Home</a></li>                   
-							<li><a href="Profile.jsp">Profile</a></li>
-							<li><a href="SendReq.jsp">Friend requests</a></li>
-							<li><a href="Friends.jsp">Friends</a></li>
-							<li><a href="FriendProfile.jsp">View Users</a></li>
-							<!--<li style="float:right"><input class="cl" type="submit" value="Log Out" name="bl"></li>
-						</ul>
-						-->
-						<input type="submit" class="button" name="bb" value="Authors" />&nbsp;
-						<input type="submit" class="button" name="bb" value="New Releases" />&nbsp;
-						<input type="submit" class="button" name="bb" value="Reviews" />&nbsp;
-						<input type="submit" class="button" name="bb" value="Awards" />&nbsp;
+                        <tr> 
 						
 
-						<br><br>
-                                               </div>
-						
-                                            </td>
-                                            </tr>
-                                            <tr>
-                                            <td style="">
-                                                <div style="width:100%; height: 500px; overflow:scroll; ">
-						<br><br><br>
+                            <td>
+                                <div style="width:100%; height:100%; font-size:20px; font-weight:bold;">
 
-                                                
-						"""
+                               <br>
+                                <table style=" font-size:20px; font-weight:bold; text-align:center; vertical-align:center; width:100%;">
+                                    <tr>
+                                    <td>
+                                      Choose a field
+                                      </td>
+                                      <td>
+                                        <select class="inputtype" name="dropdown" style="width:100%">"""
+stext=form.getvalue('stext')
+dd=form.getvalue('dropdown')
+
+##if dd:
+##    if dd=="":
+##        print """<option value=""  checked="checked">Select Option</option>"""
+##    else:
+##        print """<option value="">Select Option</option>"""
+if dd=="hash":       
+   print """<option value="hash"  selected>Hashtag</option>"""
+else:
+   print """<option value="hash">Hashtag</option>"""
+if dd=="user":
+   print """<option value="user"  selected>Users</option>"""
+else:
+    print """<option value="user">Users</option>"""
+if dd=="key":
+   print """<option value="key"  selected>Multiple Keywords</option>"""
+else:
+    print """<option value="key">Multiple Keywords</option>"""
+if dd=="location":
+   print """<option value="location" selected>Location</option>"""
+else:
+    print """<option value="location">Location</option>"""
+
+print """
+                                    </select>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        Enter the content
+                                    </td>
+                                    <td> """
+if stext:
+    print " <input class='inputtype' type='text' name='stext' style='width:80%' value='"+stext+"'> "
+else:
+    print """ <input class="inputtype" type="text" name="stext" style="width:80%"> """
+
+print """
+                                    </td>
+                                    <td style="padding-right:10px">
+                                    <input type="submit" class="button" name="search" value="Search" style="width:100%; text-size:20px;"/>
+                                    </td>
+                                    </tr>
+                                    </table>
+
+                                    <br>
+                                    <hr style="height:5px; color:black;">
+                                 </div>
+                            </td>
+
+                         </tr>
+                         <tr>
+                            <td style="">
+                                <div style="width:100%; height: 500px;overflow: scroll;">
+                                <br>
+                                <br>
+"""
 
 #<a href="search.py">Search</a>
 #if search and t:
 
 
-if bb:
+i=0
+if stext:
+
+    #movie%20trailers%20OR%20actors%20trailors
+    #s="movie "+bb+" OR actors "+bb
+    #s="movie%20trailer%20OR%20actor%20trailer"
 
     fot=form.getvalue('fot')
     if fot=="simple":
@@ -454,94 +538,186 @@ if bb:
         inentities='false'
     
     cnt=form.getvalue('notw')
+    
     #print cnt
-    s="book%20"+bb+"%20OR%20books%20author%20"+bb+"-filter:retweets" 
+    #s="movie%20"+bb+"%20OR%20actor%20"+bb+"-filter:retweets"
+    
     if sd:
         snc=fy+"-"+fm+"-"+fd
         print " since ", snc
         untl=ty+"-"+tm+"-"+td
         print "  until ", untl
-        iterator = twitter.search.tweets(q=s, lang='en', since=snc, until=untl, result_type='mixed', count=cnt, include_entities=inentities)
-    else:
-        iterator = twitter.search.tweets(q=s, lang='en', result_type='mixed', count=cnt, include_entities=inentities)
-    #s="movie%20"+bb+"%20OR%20actor%20"+bb
-    
-    tweets = iterator["statuses"]
-    tweet_count = 100
-
-
-    if fot=="simple":
-
-        for tweet in tweets:
-                                                               
-            if 'text' in tweet:
-                                                     
-                print """<div class="polaroid">"""
-                text = tweet['text']
-                entities = tweet['entities']
         
-                if 'media' in entities:
-                    for media_element in entities['media']:
-                        if media_element['type'] == 'photo':
-                            text = text.replace(media_element['url'], '')
-                        #if media_element['type'] == 'video':
-                            #text = text.replace(media_element['url'], '')
+##        iterator = twitter.search.tweets(q=s, lang='en', since=snc, until=untl, result_type='mixed', count=cnt, include_entities=inentities)
+##    else:
 
-                if 'urls' in entities:
-                    for url_element in entities['urls']:
-                        if url_element['url']:
-                            us="<a href='"+url_element['url']+"' title='"+url_element['expanded_url']+"'>"+ url_element['display_url']+"</a>"
-                            text = text.replace(url_element['url'], us)
+        
+    if dd=="hash":
+##        qq="%23"+stext
+##        iterator = twitter.search.tweets(q=qq, lang='en',geocode='12.9005,77.5942,100.0km')
+##        tweets = iterator["statuses"]
 
-                if 'extended_entities' in tweet:
-                    ee = tweet['extended_entities']
-                    if ee['media']:
-                        media=ee['media'][0]
-                        #print "EE: type:", media['type']
-                        if media['type']=='video':
-                            variants=media['video_info']['variants']
-                            for variant in variants:
-                                if variant['content_type']=='video/mp4':
-                                    print "<br><video  style='width:100%;' controls><source src='"+variant['url']+"' type='video/mp4'>Video cannot be played</video>"
-                                    break;
-                        else:
-                            print "<br><img src='", media['media_url_https']
-                            print "' alt='Image cannot be displayed.' style='width:100%;'/>"
+        s="%23"+stext+"%20-filter:retweets"
+        if sd:
+            iterator = twitter.search.tweets(q=s, lang='en', since=snc, until=untl, result_type='mixed', count=cnt, include_entities=inentities)
+        else:
+            iterator = twitter.search.tweets(q=s, lang='en', result_type='mixed', count=cnt, include_entities=inentities)
+        tweets = iterator["statuses"]
+
+
+    
+    elif dd=="key":
+        qq=""
+        keyarr=stext.split()
+        for k in keyarr:
+            #qq=qq+"AND"+k
+            qq=qq+"%20"+k
+
+        qq=qq+"%20-filter:retweets"
+        if sd:
+            iterator = twitter.search.tweets(q=qq, lang='en', since=snc, until=untl, result_type='mixed', count=cnt, include_entities=inentities)
+        else:
+            iterator = twitter.search.tweets(q=qq, lang='en', result_type='mixed', count=cnt, include_entities=inentities)
+         
+        #iterator = twitter.search.tweets(q=qq, lang='en',geocode='12.9005,77.5942,100.0km')
+        tweets = iterator["statuses"]
+
+        
+    elif dd=="user":
+        qq=" "
+        #iterator = twitter.search.tweets(q=qq, lang='en',geocode='12.9005,77.5942,100.0km',from:stext)
+        iterator = twitter.statuses.user_timeline(screen_name=stext)
+        tweets = iterator
+
+##        s="from:"+stext
+##        if sd:
+##            iterator = twitter.search.tweets(q=s, lang='en', since=snc, until=untl, result_type='mixed', count=cnt, include_entities=inentities)
+##        else:
+##            iterator = twitter.search.tweets(q=s, lang='en', result_type='mixed', count=cnt, include_entities=inentities)
+##        
+##        tweets = iterator["statuses"]
+
+    
+    elif dd=="location":
+        fo = open("id.txt", "r")
+        str = fo.read(70);
+        #print "read string is : " , str
+        s=str.split()
+        #for temp in s:
+         #   print s
+        for t in s:
+            if stext==s[i]:
+                id=s[i+1]
+                #print "i=",i
+            i=i+1
+            #print "i=" , i
+            #elif stext=="pune":
+             #   id=s[3]
+            #elif stext=="mumbai":
+             #   id=s[5]
+            #elif stext=="goa":
+             #   id=s[7]
+        #print "id=" , id
+        #print "i is " , i
+        results = twitter.trends.place(_id = id)
+        #tweets = results
+        for location in results:
+            #print "<br><br><br><br>loc:", location
+            for trend in location["trends"]:
+                #print "<br><br>trends:", trend 
+                print "<div class='polaroid' style='width:500px; font-size:16px; font-weight:bold; overflow:scroll;'><br> - %s" % trend["name"].encode('utf-8')
+                print "<br><br><hr><br>URL: <a href='%s" % trend["url"].encode('utf-8')
+                print "'>%s" % trend["url"].encode('utf-8')
+                print "</a><br><br></div><br><br>"
+                
+                #print """trends:""", trend 
+##                print """<div class="dropdown"><button class="dropbtn"><h3><br><br> - %s""" % trend["name"].encode('utf-8')
+##                print """</h3></button><div class="dropdown-content">"""
+##
+##
+##                print """</div></div><br><br>"""
+
+
+                
+
+    
+    if dd=="hash" or dd=="user" or dd=="key":
+
+        
+        if fot=="simple":
+
+            for tweet in tweets:
+                                                                   
+                if 'text' in tweet:
+                                                         
+                    print """<div class="polaroid">"""
+                    text = tweet['text']
+                    entities = tweet['entities']
+            
+                    if 'media' in entities:
+                        for media_element in entities['media']:
+                            if media_element['type'] == 'photo':
+                                text = text.replace(media_element['url'], '')
+                            #if media_element['type'] == 'video':
+                                #text = text.replace(media_element['url'], '')
+
+                    if 'urls' in entities:
+                        for url_element in entities['urls']:
+                            if url_element['url']:
+                                us="<a href='"+url_element['url']+"' title='"+url_element['expanded_url']+"'>"+ url_element['display_url']+"</a>"
+                                text = text.replace(url_element['url'], us)
+
+                    if 'extended_entities' in tweet:
+                        ee = tweet['extended_entities']
+                        if ee['media']:
+                            media=ee['media'][0]
+                            #print "EE: type:", media['type']
+                            if media['type']=='video':
+                                variants=media['video_info']['variants']
+                                for variant in variants:
+                                    if variant['content_type']=='video/mp4':
+                                        print "<br><video  style='width:100%;' controls><source src='"+variant['url']+"' type='video/mp4'>Video cannot be played</video>"
+                                        break;
+                            else:
+                                print "<br><img src='", media['media_url_https']
+                                print "' alt='Image cannot be displayed.' style='width:100%;'/>"
+                        
+                    print "<div class='container'> "
+                    print "<img src='"+tweet["user"]["profile_image_url_https"]+"' alt='img' style='vertical-align:middle;'>"
+                    if tweet['user']['name']:
+                        print "<b>&nbsp;&nbsp;"+tweet['user']['name'].encode('utf-8')+"</b>"
+                    if tweet['user']['screen_name']:
+                        print "<font color='gray'>&nbsp;&nbsp;@"+tweet['user']['screen_name'].encode('utf-8')+"</font><br>"
+                    #if tweet['retweeted_status']:
+                      #  print " retweet: ", tweet['retweeted_status']
+
+                    print "<br>Tweet:    ", text.encode('utf-8')
+
+                    print "<br><small><font color='gray'>"
+
+                    crt=tweet["created_at"].split();
+                    crt1=""+crt[1]+" "+crt[2]+" "+crt[5]
+
+                    print " <hr> Created at: "+crt[3]+" - "+crt1
                     
-                print "<div class='container'> "
-                print "<img src='"+tweet["user"]["profile_image_url_https"]+"' alt='img' style='vertical-align:middle;'>"
-                if tweet['user']['name']:
-                    print "<b>&nbsp;&nbsp;"+tweet['user']['name'].encode('utf-8')+"</b>"
-                if tweet['user']['screen_name']:
-                    print "<font color='gray'>&nbsp;&nbsp;@"+tweet['user']['screen_name'].encode('utf-8')+"</font><br>"
-
-                print "<br>Tweet:    ", text.encode('utf-8')
-
-                print "<br><small><font color='gray'>"
-
-                crt=tweet["created_at"].split();
-                crt1=""+crt[1]+" "+crt[2]+" "+crt[5]
-
-                print " <hr> Created at: "+crt[3]+" - "+crt1
-                
-                if tweet["favorite_count"]:
-                    print "  &nbsp;&nbsp;&nbsp;&nbsp;     Likes:", tweet["favorite_count"]
-                if tweet["retweet_count"]:
-                    print "  &nbsp;&nbsp;&nbsp;&nbsp;     Re-tweets:", tweet["retweet_count"]
-                print "</font></small></p> </div></div><br>"
+                    if tweet["favorite_count"]:
+                        print "  &nbsp;&nbsp;&nbsp;&nbsp;     Likes:", tweet["favorite_count"]
+                    if tweet["retweet_count"]:
+                        print "  &nbsp;&nbsp;&nbsp;&nbsp;     Re-tweets:", tweet["retweet_count"]
+                    print "</font></small></p> </div></div><br>"
 
 
 
-    else:
+        else:
 
-        for tweet in tweets:
-                                                               
-            if 'text' in tweet:
+            for tweet in tweets:
+                                                                   
+                if 'text' in tweet:
 
-                resp = twitter.statuses.oembed(_id=tweet['id_str'])
+                    resp = twitter.statuses.oembed(_id=tweet['id_str'])
 
-                print "<div class='polaroid'>"+resp['html'].encode('utf-8')+" </div><br>"
-                
+                    print "<div class='polaroid'>"+resp['html'].encode('utf-8')+" </div><br>"
+                    
                 #tweet_count += 1
                 #print " TWEET COUNT: ", tweet_count
 

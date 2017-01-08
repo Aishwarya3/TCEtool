@@ -1,4 +1,4 @@
-
+# our movies!!!!!!!
 # to run type in browser: http://localhost:8000/Movies.py
 
 
@@ -242,12 +242,12 @@ print """<!DOCTYPE html>
 
         <br><br>
 
-        <form action="Books.py">
+        <form action="Movies.py">
 
             <div class="class1" align="center">
 
                 <div class="class2" align="left" >
-                     <table >
+                      <table >
                         <tr>
                             <td colspan="4" style="padding-left:20px;">
                                 <p class="unclass">Entertainment</p>
@@ -285,10 +285,10 @@ print """<!DOCTYPE html>
                                             <tr>
 						<ul style="font-size:x-large;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                                         <li><a href="Home.py">Home</a></li>
-							<li><a href="Movies.py">Movies</a></li>                   
+							<li><a class="active" href="Movies.py">Movies</a></li>                   
 							<li><a href="Twitterati.py">Twitterati</a></li>
 							<li><a href="television.py">Television Soap Opera</a></li>
-							<li><a class="active" href="Books.py">Books</a></li>
+							<li><a href="Books.py">Books</a></li>
 							<li><a href="Theatre.py">Theatre</a></li>
 							<!--<li style="float:right"><input class="cl" type="submit" value="Log Out" name="bl"></li>-->
 						</ul>
@@ -408,25 +408,20 @@ print """   </div>
 					
 					<td  style="background-color: #DCDCDC; height:550px; width:65%;">
 
-                                            <table style="width:100%">
+                                            <table style="width:100%;">
 
                                             <tr> <td>
                             
                                                 <div style="width:100%; font-size:smaller; height:100%">
-						<!--<ul style="font-size:x-large;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-							<li><a class="active" href="Home.jsp">Home</a></li>                   
-							<li><a href="Profile.jsp">Profile</a></li>
-							<li><a href="SendReq.jsp">Friend requests</a></li>
-							<li><a href="Friends.jsp">Friends</a></li>
-							<li><a href="FriendProfile.jsp">View Users</a></li>
-							<!--<li style="float:right"><input class="cl" type="submit" value="Log Out" name="bl"></li>
-						</ul>
-						-->
-						<input type="submit" class="button" name="bb" value="Authors" />&nbsp;
-						<input type="submit" class="button" name="bb" value="New Releases" />&nbsp;
-						<input type="submit" class="button" name="bb" value="Reviews" />&nbsp;
-						<input type="submit" class="button" name="bb" value="Awards" />&nbsp;
 						
+						<input type="submit" class="button" name="bb" value="Trailers" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Controversies" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Birthdays" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Facts" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Famous Dialogues" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Place of shoot" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Actors" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Reviews" />
 
 						<br><br>
                                                </div>
@@ -434,7 +429,7 @@ print """   </div>
                                             </td>
                                             </tr>
                                             <tr>
-                                            <td style="">
+                                            <td style="" >
                                                 <div style="width:100%; height: 500px; overflow:scroll; ">
 						<br><br><br>
 
@@ -446,6 +441,31 @@ print """   </div>
 
 
 if bb:
+    if bb=="Trailers":
+    #movie%20trailers%20OR%20actors%20trailors
+    #s="movie "+bb+" OR actors "+bb
+    #s="movie%20trailer%20OR%20actor%20trailer"
+    #s="movie%20celebrities"
+        s="upcoming%20movie%20trailers-filter:retweets"
+    elif bb=="Controversies":
+        #s="bollywood%20fights OR%20censor%20board%20movie-filter:retweets"
+        s="bollywood%20fights-filter:retweets"
+    elif bb=="Famous Dialogues":
+        s="famous%20movie%20dialogues-filter:retweets"
+    elif bb=="Actors":
+        s="movie%20celebrities-filter:retweets"
+    elif bb=="Birthdays":
+        s="actors%20birthdays-filter:retweets"
+    elif bb=="Facts":
+        s="movies%20behind%20the%20scenes-filter:retweets"
+    elif bb=="Facts":
+        s="famous%20dialogues-filter:retweets"
+    else:
+        s="movie%20"+bb+"%20OR%20actor%20"+bb+"-filter:retweets"
+        
+    #movie%20trailers%20OR%20actors%20trailors
+    #s="movie "+bb+" OR actors "+bb
+    #s="movie%20trailer%20OR%20actor%20trailer"
 
     fot=form.getvalue('fot')
     if fot=="simple":
@@ -455,80 +475,110 @@ if bb:
     
     cnt=form.getvalue('notw')
     #print cnt
-    s="book%20"+bb+"%20OR%20books%20author%20"+bb+"-filter:retweets" 
+   # s="movie%20"+bb+"%20OR%20actor%20"+bb+"-filter:retweets" 
     if sd:
         snc=fy+"-"+fm+"-"+fd
         print " since ", snc
         untl=ty+"-"+tm+"-"+td
         print "  until ", untl
-        iterator = twitter.search.tweets(q=s, lang='en', since=snc, until=untl, result_type='mixed', count=cnt, include_entities=inentities)
+        iterator = twitter.search.tweets(q=s, lang='en', since=snc, until=untl, result_type='mixed', count=1000, include_entities=inentities)
     else:
-        iterator = twitter.search.tweets(q=s, lang='en', result_type='mixed', count=cnt, include_entities=inentities)
+        iterator = twitter.search.tweets(q=s, lang='en', result_type='mixed', count=1000, include_entities=inentities)
     #s="movie%20"+bb+"%20OR%20actor%20"+bb
     
     tweets = iterator["statuses"]
-    tweet_count = 100
+    #tweet_count = 100
 
+    ac_cnt = 0
+    lowid = 0
 
     if fot=="simple":
 
-        for tweet in tweets:
-                                                               
-            if 'text' in tweet:
-                                                     
-                print """<div class="polaroid">"""
-                text = tweet['text']
-                entities = tweet['entities']
-        
-                if 'media' in entities:
-                    for media_element in entities['media']:
-                        if media_element['type'] == 'photo':
-                            text = text.replace(media_element['url'], '')
-                        #if media_element['type'] == 'video':
-                            #text = text.replace(media_element['url'], '')
+         whilev=1
+         while whilev == 1 :
 
-                if 'urls' in entities:
-                    for url_element in entities['urls']:
-                        if url_element['url']:
-                            us="<a href='"+url_element['url']+"' title='"+url_element['expanded_url']+"'>"+ url_element['display_url']+"</a>"
-                            text = text.replace(url_element['url'], us)
+                #whilev += 1
 
-                if 'extended_entities' in tweet:
-                    ee = tweet['extended_entities']
-                    if ee['media']:
-                        media=ee['media'][0]
-                        #print "EE: type:", media['type']
-                        if media['type']=='video':
-                            variants=media['video_info']['variants']
-                            for variant in variants:
-                                if variant['content_type']=='video/mp4':
-                                    print "<br><video  style='width:100%;' controls><source src='"+variant['url']+"' type='video/mp4'>Video cannot be played</video>"
-                                    break;
-                        else:
-                            print "<br><img src='", media['media_url_https']
-                            print "' alt='Image cannot be displayed.' style='width:100%;'/>"
-                    
-                print "<div class='container'> "
-                print "<img src='"+tweet["user"]["profile_image_url_https"]+"' alt='img' style='vertical-align:middle;'>"
-                if tweet['user']['name']:
-                    print "<b>&nbsp;&nbsp;"+tweet['user']['name'].encode('utf-8')+"</b>"
-                if tweet['user']['screen_name']:
-                    print "<font color='gray'>&nbsp;&nbsp;@"+tweet['user']['screen_name'].encode('utf-8')+"</font><br>"
+                for tweet in tweets:
 
-                print "<br>Tweet:    ", text.encode('utf-8')
+                    lowid = tweet["id_str"]
+                                                                       
+                    if 'text' in tweet and tweet["favorite_count"] and tweet["favorite_count"] > 1:
 
-                print "<br><small><font color='gray'>"
+                        ac_cnt += 1
 
-                crt=tweet["created_at"].split();
-                crt1=""+crt[1]+" "+crt[2]+" "+crt[5]
-
-                print " <hr> Created at: "+crt[3]+" - "+crt1
+                        print ac_cnt
+                                                             
+                        print """<div class="polaroid">"""
+                        text = tweet['text']
+                        entities = tweet['entities']
                 
-                if tweet["favorite_count"]:
-                    print "  &nbsp;&nbsp;&nbsp;&nbsp;     Likes:", tweet["favorite_count"]
-                if tweet["retweet_count"]:
-                    print "  &nbsp;&nbsp;&nbsp;&nbsp;     Re-tweets:", tweet["retweet_count"]
-                print "</font></small></p> </div></div><br>"
+                        if 'media' in entities:
+                            for media_element in entities['media']:
+                                if media_element['type'] == 'photo':
+                                    text = text.replace(media_element['url'], '')
+                                #if media_element['type'] == 'video':
+                                    #text = text.replace(media_element['url'], '')
+
+                        if 'urls' in entities:
+                            for url_element in entities['urls']:
+                                if url_element['url']:
+                                    us="<a href='"+url_element['url']+"' title='"+url_element['expanded_url']+"'>"+ url_element['display_url']+"</a>"
+                                    text = text.replace(url_element['url'], us)
+
+                        if 'extended_entities' in tweet:
+                            ee = tweet['extended_entities']
+                            if ee['media']:
+                                media=ee['media'][0]
+                                #print "EE: type:", media['type']
+                                if media['type']=='video':
+                                    variants=media['video_info']['variants']
+                                    for variant in variants:
+                                        if variant['content_type']=='video/mp4':
+                                            print "<br><video  style='width:100%;' controls><source src='"+variant['url']+"' type='video/mp4'>Video cannot be played</video>"
+                                            break;
+                                else:
+                                    print "<br><img src='", media['media_url_https']
+                                    print "' alt='Image cannot be displayed.' style='width:100%;'/>"
+                            
+                        print "<div class='container'> "
+                        print "<img src='"+tweet["user"]["profile_image_url_https"]+"' alt='img' style='vertical-align:middle;'>"
+                        if tweet['user']['name']:
+                            print "<b>&nbsp;&nbsp;"+tweet['user']['name'].encode('utf-8')+"</b>"
+                        if tweet['user']['screen_name']:
+                            print "<font color='gray'>&nbsp;&nbsp;@"+tweet['user']['screen_name'].encode('utf-8')+"</font><br>"
+
+                        print "<br>Tweet:    ", text.encode('utf-8')
+
+                        print "<br><small><font color='gray'>"
+
+                        crt=tweet["created_at"].split();
+                        crt1=""+crt[1]+" "+crt[2]+" "+crt[5]
+
+                        print " <hr> Created at: "+crt[3]+" - "+crt1
+                        
+                        if tweet["favorite_count"]:
+                            print "  &nbsp;&nbsp;&nbsp;&nbsp;     Likes:", tweet["favorite_count"]
+                        if tweet["retweet_count"]:
+                            print "  &nbsp;&nbsp;&nbsp;&nbsp;     Re-tweets:", tweet["retweet_count"]
+                        print "</font></small></p> </div></div><br>"
+
+                        
+
+                        if ac_cnt >= cnt:
+                            break
+
+                if ac_cnt < cnt:
+                    
+                    if sd:
+                        iterator = twitter.search.tweets(q=s, lang='en', max_id=lowid, since=snc, until=untl, result_type='mixed', count=1000, include_entities=inentities)
+                    else:
+                        iterator = twitter.search.tweets(q=s, lang='en', max_id=lowid, result_type='mixed', count=1000, include_entities=inentities)
+                        
+                    tweets = iterator["statuses"]
+
+                else:
+                    break
 
 
 
@@ -609,7 +659,7 @@ else:
     print """ <input type="radio" name="fot" value="embed">Embedded (Slower) """
 print """
 
-<br>No. of Tweets:&nbsp;<input type="number" name="notw" min="1" max="100" value="25">
+<br>No. of Tweets:&nbsp;<input type="number" name="notw" min="1" max="100" value="10">
 </div></tr></table></td>
 				</tr>		
 				</div>

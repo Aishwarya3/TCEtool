@@ -1,5 +1,5 @@
 
-# to run type in browser: http://localhost:8000/Movies.py
+# to run type in browser: http://localhost:8000/television.py
 
 
 # Import the necessary package to process data in JSON format
@@ -242,7 +242,7 @@ print """<!DOCTYPE html>
 
         <br><br>
 
-        <form action="Books.py">
+        <form action="television.py">
 
             <div class="class1" align="center">
 
@@ -287,8 +287,8 @@ print """<!DOCTYPE html>
                                                         <li><a href="Home.py">Home</a></li>
 							<li><a href="Movies.py">Movies</a></li>                   
 							<li><a href="Twitterati.py">Twitterati</a></li>
-							<li><a href="television.py">Television Soap Opera</a></li>
-							<li><a class="active" href="Books.py">Books</a></li>
+							<li><a class="active" href="television.py">Television Soap Opera</a></li>
+							<li><a href="Books.py">Books</a></li>
 							<li><a href="Theatre.py">Theatre</a></li>
 							<!--<li style="float:right"><input class="cl" type="submit" value="Log Out" name="bl"></li>-->
 						</ul>
@@ -408,28 +408,21 @@ print """   </div>
 					
 					<td  style="background-color: #DCDCDC; height:550px; width:65%;">
 
-                                            <table style="width:100%">
+                                            <table style="width:100%;">
 
                                             <tr> <td>
                             
-                                                <div style="width:100%; font-size:smaller; height:100%">
-						<!--<ul style="font-size:x-large;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-							<li><a class="active" href="Home.jsp">Home</a></li>                   
-							<li><a href="Profile.jsp">Profile</a></li>
-							<li><a href="SendReq.jsp">Friend requests</a></li>
-							<li><a href="Friends.jsp">Friends</a></li>
-							<li><a href="FriendProfile.jsp">View Users</a></li>
-							<!--<li style="float:right"><input class="cl" type="submit" value="Log Out" name="bl"></li>
-						</ul>
-						-->
-						<input type="submit" class="button" name="bb" value="Authors" />&nbsp;
-						<input type="submit" class="button" name="bb" value="New Releases" />&nbsp;
-						<input type="submit" class="button" name="bb" value="Reviews" />&nbsp;
-						<input type="submit" class="button" name="bb" value="Awards" />&nbsp;
+                                               <div style="width:100%; font-size:smaller; height:100%">
 						
-
-						<br><br>
-                                               </div>
+						<input type="submit" class="button" name="bb" value="Fan Theory" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Characterization" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Facts" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Plot" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Actors" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Awards" />&nbsp;
+						<input type="submit" class="button" name="bb" value="Reviews" />
+						
+                                                </div>
 						
                                             </td>
                                             </tr>
@@ -446,6 +439,13 @@ print """   </div>
 
 
 if bb:
+    if bb=="Facts":
+        s="tv%20series%20facts-filter:retweets"
+    elif bb=="Actors":
+        s="tv%20series%20actors-filter:retweets"
+    else:
+        #s="series%20"+bb+"%20OR%20tv%20actor%20"+bb+"%20OR%20tv%20"+bb
+        s=s="series%20"+bb
 
     fot=form.getvalue('fot')
     if fot=="simple":
@@ -455,7 +455,8 @@ if bb:
     
     cnt=form.getvalue('notw')
     #print cnt
-    s="book%20"+bb+"%20OR%20books%20author%20"+bb+"-filter:retweets" 
+    #s="movie%20"+bb+"%20OR%20actor%20"+bb+"-filter:retweets"
+   
     if sd:
         snc=fy+"-"+fm+"-"+fd
         print " since ", snc
